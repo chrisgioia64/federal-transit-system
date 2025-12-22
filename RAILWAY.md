@@ -1,6 +1,13 @@
 # Railway Setup
 This file describes the ClickOps procedure for building an environment using the PaaS provider Railway.
 
+Video Notes:
+I want to describe how to deploy a three-tier (frontend, backend, and database) application on Railway using their User Interface. I find Railway much easier to use than AWS because Railway is built for solo developers while AWS is built for enterprises. If you had trouble getting setup with AWS, look at this tutorial on how to do it with Railway. This tutorial assumes the frontend and backends are already mostly finished, and the main hurdle is putting your application on the cloud.
+
+First, let me briefly describe the app so you can see what I am building. (bring up app from production url). The app shows public transit data about metropolitan areas around the United States. There is a map that shows markers of each of the metropolitan areas on the left here. When you select a city, a details pane showing information such as population and ridership is shown. For instance, let's look at San Francisco since I am from there. The population is about 3.2 million which ranks 13th in the nation. But look here; the trips per person is a whopping 33.6 which ranks 3rd in the nation. And as you can see, bus covers about 80% of the usage while rail covers 20%. The frontend calls APIs on a backend which call a database.
+
+Ok, let's get started. My goal is to make the application adhere to the 12 factor app principles, which serve as a good foundation for creating resilient, portable, and scalable SaaS applications. If you want to learn more about the 12 factor principles, click the [link](https://12factor.net/). Railway and other similar PaaS providers like Render and Heroku force you to adhere to these principles out of the box.
+
 ## Step 1 -- Frontend
 - Go to the project canvas for the [Federal Transit App](https://railway.com/project/62959ca3-c1bb-4753-aeb5-8ec83faa58ef?)
 - Create a new environment by clicking in the top-left of the screen.
@@ -46,4 +53,18 @@ Note: This setting configures the internal port managed by the container. The pu
 - You can also check the networks tab in Chrome Developer tools to see resources that have not been loaded (e.g. metros_with_coordinates)
 <img width="257" height="156" alt="image" src="https://github.com/user-attachments/assets/a0adb360-51eb-41f0-9cfc-4ae479d903d6" />
 
+- The frontend is done for now.
+
+## Step 2 -- Backend
+- Create the backend service using a similar process to the one for the frontend service. We are also going to pick a github repository.
+<img width="511" height="230" alt="image" src="https://github.com/user-attachments/assets/a15b5163-2ce3-450d-9c96-4ab02dea13ee" />
+
+- Click the deploy option to deploy the service.
+<img width="579" height="184" alt="image" src="https://github.com/user-attachments/assets/e1ae52a9-3f43-4f8d-9e9d-f5c1ccc4cee5" />
+
+- In contrast to the frontend service, the **build** process for the backend application is more involved and takes longer (1-2 minutes). Be patient.
+- You can check out the process of the build process by going to "Deployment" tab in the control panel.
+<img width="1103" height="348" alt="image" src="https://github.com/user-attachments/assets/1d63a2f8-bb68-45b7-863b-9daf266f6a44" />
+
+- You can view the logs as well to see exactly what is happening. There are two types of logs: build logs and deploy logs. Build logs describe the process of creating the docker image from the Dockerfile or optionally a build tool like Railpack if no Dockerfile is specified. Deploy logs describe what is going on after the docker container is deployed and the Spring application is running. The build should be successful but if you look at the deploy logs you will see an error. This is expected because we have not setup our database yet.
 
