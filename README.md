@@ -8,3 +8,5 @@ It conforms to twelve factor app principles for building cloud-native SaaS appli
 - [Frontend](https://github.com/chrisgioia64/federal-transit-front)
 - [Backend](https://github.com/chrisgioia64/federal_transit)
 
+### ClickOps Procedure
+Click [here](https://github.com/chrisgioia64/federal-transit-system/blob/master/RAILWAY.md) for procedure on using the Railway UI for deploying our Transit App.
