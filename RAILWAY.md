@@ -2,6 +2,8 @@
 This file describes the ClickOps procedure for building an environment using the PaaS provider Railway.
 
 Video Notes:
+View this [Youtube video](https://www.youtube.com/watch?v=Pwdkzfn9zHA) on deploying the Federal Transit application to the cloud.
+
 I want to describe how to deploy a three-tier (frontend, backend, and database) application on Railway using their User Interface. I find Railway much easier to use than AWS because Railway is built for solo developers while AWS is built for enterprises. If you had trouble getting setup with AWS, look at this tutorial on how to do it with Railway. This tutorial assumes the frontend and backends are already mostly finished, and the main hurdle is putting your application on the cloud.
 
 First, let me briefly describe the app so you can see what I am building. (bring up app from production url). The app shows public transit data about metropolitan areas around the United States. There is a map that shows markers of each of the metropolitan areas on the left here. When you select a city, a details pane showing information such as population and ridership is shown. For instance, let's look at San Francisco since I am from there. The population is about 3.2 million which ranks 13th in the nation. But look here; the trips per person is a whopping 33.6 which ranks 3rd in the nation. And as you can see, bus covers about 80% of the usage while rail covers 20%. The frontend calls APIs on a backend which call a database.
@@ -67,4 +69,7 @@ Note: This setting configures the internal port managed by the container. The pu
 <img width="1103" height="348" alt="image" src="https://github.com/user-attachments/assets/1d63a2f8-bb68-45b7-863b-9daf266f6a44" />
 
 - You can view the logs as well to see exactly what is happening. There are two types of logs: build logs and deploy logs. Build logs describe the process of creating the docker image from the Dockerfile or optionally a build tool like Railpack if no Dockerfile is specified. Deploy logs describe what is going on after the docker container is deployed and the Spring application is running. The build should be successful but if you look at the deploy logs you will see an error. This is expected because we have not setup our database yet.
+
+<img width="1157" height="229" alt="image" src="https://github.com/user-attachments/assets/56bb84a4-5231-46e6-81cd-830c322691aa" />
+
 
